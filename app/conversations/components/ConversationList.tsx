@@ -11,6 +11,7 @@ import { find, uniq } from "lodash";
 import { FullConversationType } from "@/app/types";
 import useConversation from "@/app/hooks/useConversation";
 import ConversationBox from "./ConversationBox";
+import GroupChatModal from "@/app/components/modals/GroupChatModal";
 
 interface ConversationListProps {
   initialItems: FullConversationType[];
@@ -32,6 +33,11 @@ const ConversationList: React.FC<ConversationListProps> = ({
 
   return (
     <>
+      <GroupChatModal
+        users={users}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
       <aside
         className={clsx(
           `
@@ -55,14 +61,14 @@ const ConversationList: React.FC<ConversationListProps> = ({
             <div
               onClick={() => setIsModalOpen(true)}
               className="
-              rounded-full 
-              p-2 
-              bg-gray-100 
-              text-gray-600 
-              cursor-pointer 
-              hover:opacity-75 
-              transition
-            "
+                rounded-full 
+                p-2 
+                bg-gray-100 
+                text-gray-600 
+                cursor-pointer 
+                hover:opacity-75 
+                transition
+              "
             >
               <MdOutlineGroupAdd size={20} />
             </div>
